@@ -1,0 +1,179 @@
+\documentclass{article}
+
+
+\usepackage{arxiv}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{lipsum}
+\usepackage{amsmath}
+
+\title{Notes on Monte Carlo}
+
+
+\author{
+  Jorge Alarcon Ochoa
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Notes on monte carlo.
+\end{abstract}
+
+
+% keywords can be removed
+\keywords{Monte Carlo \and Statistical Mechanics \and Quantum Field Theory}
+
+
+\section{Introduction}
+\begin{description}
+\item Importance sampling
+\item Using monte carlo to reproduce a Boltzmann distribution
+\end{description}
+
+
+\section{Importance Sampling}
+
+A stochastic process that obeys the conditions of a Markov process will reproduce a Boltzmann distribution.
+
+A discrete-time Markov chain is the simplest sort of stochastic process.
+
+\subsection{Markov Chains}
+
+A Markov chain is a process in which the probability
+$P(\nu \rightarrow \mu)$
+of making a transition from state $\nu$ to state $\mu$ depends only on those two states.
+
+$P(\nu\rightarrow\mu)$ must be constant over time.
+And $\Sigma_{\mu} P(\nu\rightarrow\mu) = 1$.
+Also, there can be a non-zero probability of remaining in the same state, that is $P(\mu\rightarrow\mu) \neq 0$.
+
+Right now, with these constraints, you should be thinking of a random walk!
+In order to reproduce a Boltzmann distribution we need two more requirements.
+
+The first is that it must be possible to reach any state from any other state though a finite number of transitions.
+This is the condition of \textbf{ergodicity}.
+Mathematically, this corresponds to having non-zero boltazmann factors at all times.
+
+The second condition normally goes by the name of \textbf{detailed balance}.
+Simple "balance" tells us that after the system has come to equilibrium the rate of transition into any given state equals the rate of transition out of that state
+
+\begin{equation}
+\label{balance}
+\Sigma_\mu p_\nu P(\nu\rightarrow\mu)
+ = \Sigma_\mu p_\mu P(\mu\rightarrow\nu)
+\end{equation}
+
+Here, $p_\mu$ corresponds to the probability of the system of being in state $\mu$.
+And $P(\nu\rightarrow\mu)$ corresponds to the transition probability of going from state $\nu$ to state $\mu$. 
+
+This condition, however, does not rule out a state of dynamic equilibrium.
+Say something about dynamic equilibrium \cite{dynamicEquilibriumExplain}.
+
+In order to reproduce a Boltzmann distribution we need to guarantee a state of static equilibrium.
+This is where detailed balance comes in.
+The idea of detailed balance builds on top of the normal balance condition of \eqref{balance}.
+Detailed balance requires that the rate at which the system transitions into a state $\mu$ from a state $\nu$ must be equal to the rate at which it transitions from $\mu$ to $\nu$
+
+\begin{equation}
+\label{detailedBalance}
+p_\nu P(\nu\rightarrow\mu)
+= p_\mu P(\mu\rightarrow\nu) 
+\end{equation}
+
+Equation \eqref{detailedBalance} can be used to set the Boltzmann factor
+\begin{equation}
+\frac{P(\nu\rightarrow\mu)}{P(\mu\rightarrow\nu)}
+= \frac{p_\mu}{p_\nu}
+= e^{-\beta (E_\mu - E_\nu)}
+\end{equation}
+
+\subsubsection{Computational Details}
+In practice we will want to break up the transition probabilities into a product of generation and acceptance probabilities such as 
+
+\begin{equation}
+\frac{P(\nu\rightarrow\mu)}{P(\mu\rightarrow\nu)}
+= \frac{g(\nu\rightarrow\mu)}{g(\mu\rightarrow\nu)}
+  \frac{A(\nu\rightarrow\mu)}{A(\mu\rightarrow\nu)}
+\end{equation}
+
+Where $g(\nu\rightarrow\mu)$ is the probability of producing a state $\mu$ from a state $\nu$ and $A(\nu\rightarrow\mu)$ the prbability of acception the state $\mu$ that has been generated from a state $\nu$.
+
+In the perfect case, the acceptance probabilities would be as close to unity as possible - whatever state that is generated is accepted and we are sampling the most important details of our system.
+
+
+\section{Ising Model}
+
+Now that we got some theory out of the way, it is time to explore some Markov chain Monte Carlo algorithms.
+We will begin by intrducing the Ising model and to discuss how to simulate it in a lattice using the Metropolis and the Wolff cluster algorithms.
+
+\subsection{Model description}
+The Ising model is intended to describe ferromagnetic meterials.
+Its formulation is a magnet being composed of "spins", each spin corresponding to a point in a lattice.
+A spin can take a value of either +1 or -1 (a magnetic dipole pointing up or down).
+Its Hamiltonian being
+
+\begin{equation}
+H 
+= - \sum_{<ij>} J_{ij} s_i s_j 
+  - \sum_i B_i s_i
+\end{equation}
+
+$\sum_{<ij>}$ indicates a sum over all pairs of neighboring spins; $J_{ij}$ the strength of the interaction between neighboring spins; $B$ the strength of the external magnetic field at position $i$; and $s_i$ is the spin at site $i$, $s_i \in \left\lbrace +1, -1 \right\rbrace$.
+
+
+\subsection{Figures}
+See Figure \ref{fig:fig1}. Here is how you add footnotes. \footnote{Sample of the first footnote.}
+
+\begin{figure}
+  \centering
+  \fbox{\rule[-.5cm]{4cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
+  \caption{Sample figure caption.}
+  \label{fig:fig1}
+\end{figure}
+
+
+
+
+
+\bibliographystyle{unsrt}  
+%\bibliography{references}  %%% Remove comment to use the external .bib file (using bibtex).
+%%% and comment out the ``thebibliography'' section.
+
+
+%%% Comment out this section when you \bibliography{references} is enabled.
+\begin{thebibliography}{1}
+
+\bibitem{dynamicEquilibriumExplain}
+Lee J. Silverberg and Lionel M. Raff.
+\newblock Are the Concepts of Dynamic Equilibrium and the Thermodynamic Criteria for Spontaneity, Nonspontaneity, and Equilibrium Compatible?
+\newblock In {\em J. Chem. Educ. 2015, 92, 4, 655-659}.
+Publication Date: January 23, 2015.
+https://doi.org/10.1021/ed500660j
+
+
+\bibitem{kour2014fast}
+George Kour and Raid Saabne.
+\newblock Fast classification of handwritten on-line arabic characters.
+\newblock In {\em Soft Computing and Pattern Recognition (SoCPaR), 2014 6th
+  International Conference of}, pages 312--318. IEEE, 2014.
+
+\bibitem{hadash2018estimate}
+Guy Hadash, Einat Kermany, Boaz Carmeli, Ofer Lavi, George Kour, and Alon
+  Jacovi.
+\newblock Estimate and replace: A novel approach to integrating deep neural
+  networks with existing applications.
+\newblock {\em arXiv preprint arXiv:1804.09028}, 2018.
+
+\end{thebibliography}
+
+
+\end{document}
