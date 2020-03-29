@@ -1,0 +1,911 @@
+\documentclass[10pt,twoside,openright]{memoir}
+%\usepackage{createspace}
+%\usepackage[size=pocket,noicc]{createspace}
+\usepackage[paperwidth=6.5in, paperheight=11.0in,bindingoffset=.75in]{geometry}
+%\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage[english]{babel}
+%\usepackage{tgtermes}
+\usepackage{siunitx}
+\usepackage{amsmath}
+
+%\usepackage{mathpazo}
+\usepackage[protrusion=true,expansion=true]{microtype}
+%\usepackage{type1cm}
+%\usepackage{lettrine}
+
+
+%\checkandfixthelayout
+
+% See the ``Memoir customise'' template for some common customisations
+% Don't forget to read the Memoir manual: memman.pdf
+
+%\title{TITLE OF BOOK}
+%\author{NAME OF AUTHOR}
+%\date{} % Delete this line to display the current date
+
+%% BEGIN TITLE
+
+\makeatletter
+\def\maketitle{%
+  \null
+  \thispagestyle{empty}%
+  \vfill
+  \begin{center}\leavevmode
+    \normalfont
+    {\LARGE\raggedleft \@author\par}%
+    \hrulefill\par
+    {\huge\raggedright \@title\par}%
+    \vskip 1cm
+%    {\Large \@date\par}%
+  \end{center}%
+  \vfill
+  \null
+  \cleardoublepage
+  }
+\makeatother
+%%%\author{NAME OF AUTHOR}
+%%%\author{NAME OF AUTHOR}
+\title{Thermodynamics and Statistical Mechanics}
+\date{}
+
+
+
+
+
+
+
+
+
+
+%%% BEGIN DOCUMENT
+
+\begin{document}
+
+\let\cleardoublepage\clearpage
+
+
+\maketitle
+
+
+
+
+
+
+%\frontmatter
+
+%\null\vfill
+
+
+%\let\cleardoublepage\clearpage
+
+\mainmatter
+\sloppy
+
+\include{tex/001_intro}
+
+
+\chapter{Preliminaries}
+
+Limits of the continuum model (Include discussion on Loschmidt's number).
+
+Property (thermodynamic variable/coordinate) observables characteristics of the system.
+
+State variable describe equilibrium states. Also, these are properties whose differential is exact (which begs the question of what an inexact differential is). 
+The state of a system is defined as a condition uniquely specified by a set of thermodynamic coordinates. 
+Like in any problem one is then interested in what is the number of required of thermodynamic coordinates to uniquely specify my system.
+For example, if we were to design an experiment, how many properties would one need to specify in order to properly describe in a non-redundant manner the experimental set up, so that the experiment could be replicated.
+It turns out that these can be seen from the resulting form of the first law of thermodynamics being used.
+Lets take for example a closed system with one component. The resulting form of the first law is simply:
+
+\begin{equation}
+dU = TdS - PdV.
+\end{equation}
+
+Here one sees that we are looking at the internal energy (a state whose entropy and volume are constrained) and has two pairs of conjugate variables (think of classical mechanics where the generalized distance and momenta are needed in order to completely solve the problem). 
+Each one of these pairs is made up of an Intensive property multiplying and (exact) differential of the conjugate extensive property. 
+For such a system one would need to specify two thermodynamic coordinates temperature and pressure, entropy and volume, etc. 
+
+One last definition: an equation of state is a functional relationship among the state variables of a system.
+Taking the former example, the equation of state would have the following form:
+
+\begin{equation}
+f \left( P, V, T \right) = 0
+\end{equation}
+
+Using this relationship one then reduces the number of independent variables from three to two. (Include discussion from Holme's textbook on foundations of applied mathematics).
+
+
+\section{Condensed Matter Phenomenology}
+
+\section{The Classical World}
+Carnot's interest on the efficiency of steam engines.
+
+Mayer postulated the equivalence of heat and work.
+
+Clausius and entropy.
+
+Nernst and Planck with the third law and limitations of physical systems.
+
+\section{Then there were atoms}
+Maxwell's kinetic theory.
+
+Boltzmann, Gibbs on statistical mechanics.
+
+\section{The Future}
+Non-equilibrium
+
+Non-linear effects.
+
+\section{The Basics}
+
+Building models of study going from the simplest to the real. Isolated, closed and open systems.
+
+
+Intensive versus extensive properties and euler's theorem.
+
+
+Classical thermodynamics is a continuum theory. Invoking quantum effects and the limitations of our theory. Loschmit's number.
+
+
+\section{Mathematics}
+
+The state of a system is uniquely defined by a set of properties. 
+
+How many constraints do we need to completely specify our system?
+
+Equilibrium versus non-equilibrium states.
+
+State variables are properties that describe equilibrium states.
+
+Equation of state is a functional relationship between state variables.
+
+The differential of a state variable is exact. 
+Mathematics and abstraction of thermodynamics coordinates for descriptive purposes.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{The Four Commandments}
+Here we are to go through the laws of thermodynamics.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Thermodynamics in Action}
+
+
+\section{\label{sec:level1} Some Preliminaries: Pfaffians and Integrability}
+
+\subsection{Legendre Transformation}
+$$
+Z = Z \left( x,y \right)
+$$
+$$
+dZ = Xdx + Ydy,
+$$
+where $x$, $X$, and $y$, $Y$ are canonical conjugate pairs.
+
+If we wish to replace only one of the variables, say $y$, by its canonically conjugate variable $Y$, we must consider the function
+$$
+N \left( x, Y \right) = Z - yY
+$$
+
+A curve in a plane can be equally well represented by pairs of coordinates (point geometry), or as the envelope of a family of tangent line (line geometry).
+
+\subsection{Building Thermodynamic Relations}
+$$
+dE = TdS - PdV + \mu dN
+$$
+
+SEE chapter 1.3 to 1.5 from pathria on studying the thermodynamics of an ideal gas.
+
+\subsection{Maxwell Relations}
+
+\textbf{Internal Energy: $U(S,V)$}
+$$
+\left( \frac{\partial T}{\partial V} \right)_{S} = - \left( \frac{\partial P}{\partial S} \right)_{V}
+$$
+
+This result can be derived as follows:
+$$
+\frac{\partial^2 U}{\partial V \partial S} =
+\left( \frac{\partial T}{\partial V} \right)_S  
+=
+\frac{\partial^2 U}{\partial S \partial V} =
+- \left( \frac{\partial P}{\partial S} \right)_V
+$$
+
+\textbf{Enthalpy: $H(S,P)$}
+$$
+\left( \frac{\partial T}{\partial P} \right)_{S} = \left( \frac{\partial V}{\partial S} \right)_{P}
+$$
+
+\textbf{Helmholtz: $F(T,V)$}
+$$
+\left( \frac{\partial S}{\partial V} \right)_{T} = \left( \frac{\partial P}{\partial T} \right)_{V}
+$$
+
+\textbf{Gibbs: $G(T,P)$}
+$$
+\left( \frac{\partial S}{\partial P} \right)_{T} = - \left( \frac{\partial V}{\partial T} \right)_{P}
+$$
+
+
+\subsection{Their use}
+Suppose it is found experimentally that for a solid
+$$
+\left( \frac{\partial V}{\partial T} \right)_p = a + bp + cp^2
+$$
+at temperature T for $p_a \lq p \lq p_B$. How much will the entropy increase when the solid is compressed from point A to point B at a constant temperature.
+Recall, $\left( \partial S / \partial p \right)_T = -\left( \partial V / \partial T \right)_p$, the desired entropy is then given by
+$$
+\int dS = \int_{p_A}^{p_B} \left( \frac{\partial S}{\partial p} \right)_T dP = - \int \left( \frac{\partial V}{\partial T} \right)_p
+$$ 
+$$
+= - \left[ a(p_B - p_A) + \frac{1}{2}b(p_{B}^{2} - p_{A}^{2})  + \frac{1}{3}c(p_{B}^{3} - p_{A}^{3}) \right]
+$$
+
+\section{Equations of State}
+
+\subsection{From Point Particles to Hard Spheres}
+In a classical gas of hard spheres (of diameter D), the spatial distribution of the particles is no
+longer uncorrelated. Roughly speaking, the presence of n particles in the system leaves only a volume ($V - nv_0$) available for the (n + 1)th particle; clearly, $v_0$ would be proportional to $D^3$. Assuming that $Nv_0 \ll V$, determine the dependence of (N, V , E) on V (compare to equation ($\Omega (N,V,E) \propto V^N$).
+
+$$
+\Omega \propto V (V - v_0)(V-2v_0)...(V - (N-1)v_0),
+$$
+
+so
+$$
+\log \Omega \propto \log V + \log \left( V - v_0 \right) + \log \left( V-2v_0 \right) + ... + \log \left(V - \left( N-1\right)v_0\right)
+$$
+$$
+= \log V + \sum_{i=1}^{N-1} \log \left( V - iv_0 \right) 
+= N \log V + \sum_{i=1}^{N-1} \log \left( 1 - \frac{iv_0}{V} \right)
+$$
+
+Because $v_0 \ll V$,and using:
+\begin{equation}
+\log \left( 1 + x \right) = x -\frac{1}{2}x^2 + \frac{1}{3}x^3 -...
+\end{equation}
+
+We get
+$$
+\log \Omega \propto N \log V + \sum_{i=1}^{N-1} \left( - \frac{iv_0}{V} \right)
+$$
+
+Here we use the series
+\begin{equation}
+\sum_{k=1}^{N} k = \frac{N(N+1)}{2}
+\end{equation}
+
+and so
+$$
+\log \Omega \propto N \log V - \frac{v_0 N^2}{2V}
+$$
+
+Using the formula
+\begin{equation}
+S = k \log \Omega 
+\end{equation}
+
+One can easily arrive at,
+$$
+\frac{P}{T} = \left( \frac{\partial S}{\partial v} \right)_{N,E} 
+= k \left( \frac{\partial \log \Omega}{\partial V} \right)_{N,E} 
+= k \left( \frac{N}{V} + \frac{v_0 N^2}{2V^2} \right)
+$$
+
+Rearranging terms,
+$$
+PV \left( 1+ \frac{v_0 N}{2V^2}\right)^{-1} = NkT
+$$
+
+Noting that the term in parenthesis can be expanded by using a binomial expansion
+\begin{equation}
+\left( a + x \right)^\gamma = a^\gamma + \gamma x a^{\gamma -1} + \frac{1}{2}\gamma (\gamma - 1)x^2 a^{\gamma -2} + \frac{1}{3!}\gamma (\gamma - 1)(\gamma - 2)x^3 a^{\gamma -3} + ...
+\end{equation}
+So 
+$$
+\frac{1}{1+ \frac{v_0 N}{2V^2}} = 1 - \frac{v_0 N}{2V} + ...
+$$
+
+and thus
+$$
+P(v-b)=NkT
+$$
+where $b = \frac{1}{2}N v_0$. Comparing $b$ with the the radius of a particle, we can see that this term is proportional to four times the actual volume occupied by a particle. taking into account that hard spheres exclude a volume relative to twice their actual radius
+
+$$
+b = \frac{N}{2}\frac{4 \pi}{3} \sigma^3 = 4N \frac{4 \pi}{3} \left( \frac{1}{2}\sigma \right)^3
+$$
+
+\section{Some Empirical Equations of State}
+
+\subsection{Van der Waals Gas}
+
+\subsection{Dietereci's Gas}
+
+\subsection{Analysing the Dependencies of the Equation of State}
+Suppose that we have an equation of state such that
+$$
+P = f(V) T
+$$
+Show that the internal energy is independent of volume. In order for us to show this we use the equation
+$$
+dS = \frac{1}{T} \left( dU + pdV \right)
+$$
+
+Thus
+
+$$
+\left( \frac{\partial S}{\partial V} \right)_T 
+= \frac{1}{T} \left( \frac{\partial U}{\partial V} \right)_T +  \frac{p}{T}
+$$
+
+and
+
+$$
+\left( \frac{\partial S}{\partial T} \right)_V 
+= \frac{1}{T} \left( \frac{\partial U}{\partial T} \right)_V
+$$
+
+We now require for $dS$ to be an exact differential, $\partial^2 S / \partial T \partial V = \partial^2 S / \partial V \partial T$, which gives us
+
+$$
+\frac{\partial}{\partial T} \left( \frac{1}{T} \frac{\partial U}{\partial V} \right) + \frac{\partial}{\partial T} \left(  \frac{p}{T} \right) 
+= \frac{\partial}{\partial V} \left( \frac{1}{T} \frac{\partial U}{\partial T} \right)
+$$
+
+Rearranging terms
+$$
+\left( \frac{\partial U}{\partial V} \right)_T = T^2 \frac{\partial}{\partial T} \left( \frac{p}{T} \right)_V 
+= T \left( \frac{\partial p}{\partial T} \right)_V - p = 0.
+$$
+This shows that the Internal energy is independent of the volume.
+
+\subsection{Another Equation of State}
+$$
+p = \frac{1}{3} u(T)
+$$
+Where $u(T)$ is the internal energy density.
+
+Using the result from the previous section, we have
+$$
+\left( \frac{\partial U}{\partial V} \right)_T = T \left( \frac{\partial p}{\partial T} \right)_V - p
+$$
+and using the fact that $U = u(T) V$, we have
+$$
+u(T) = \frac{1}{3}T \frac{du(T)}{dT} - \frac{1}{3}u(T)
+$$
+
+Which is equivalent to
+$$
+T \frac{du(T)}{dT} - 4u(T) = 0
+$$
+
+After integrating this gives,
+$$
+u(T) \propto T^4
+$$
+
+This is the case for the equation of state describing the thermal radiation due to a boson gas.
+
+\subsection{The Thermodynamics of a Rubber Band}
+Suppose that we know the equation of state for a rubber band is given by,
+$$
+U = \theta S^2 L / n^2
+$$
+
+
+where $\theta$ is a constant, $L$ is the length of the rubber band. Determine the chemical potential $\mu (T, L/n)$ and show that the equation of state satisfies the analogue of the Gibbs-Duhem equation.
+
+$$
+f = \left(  \frac{\partial E}{\partial L} \right)_{S,n}
+$$
+
+$$
+\mu = \left(  \frac{\partial E}{\partial n} \right)_{S,L}
+$$
+
+$$
+T = \left(  \frac{\partial E}{\partial S} \right)_{L,N}
+$$
+  
+The Gibbs-Duhem equation is $0 = SdT + Ldf +  n d \mu$.
+$$
+dT = \left(  \frac{\partial T}{\partial S} \right)_{L,n} dS + \left(  \frac{\partial T}{\partial L} \right)_{S,n} dL +
+\left(  \frac{\partial T}{\partial n} \right)_{S,L} dn
+$$
+$$
+df = \left(  \frac{\partial f}{\partial S} \right)_{L,n} +
+\left(  \frac{\partial f}{\partial n} \right)_{S,L} dn
+$$
+$$
+d \mu = \left(  \frac{\partial \mu}{\partial S} \right)_{L,T} dS + \left(  \frac{\partial \mu}{\partial L} \right)_{S,T, n} dL + \left(  \frac{\partial \mu}{\partial n} \right)_{S,L} dn
+$$
+
+\subsection{Maxwell Relations for Rubber Bands}
+$$
+dE = TdS - pdV + fdL
+$$
+
+
+
+\subsection{On Stability of Rubber Bands}
+
+It is known from experiments that a rubber band will heat uo when stretched adiabatically. But what about if we took the same rubber band and we cooled it down keeping the tension constant. would the rubber band expand or contract?
+
+The fact that the rubber band hats up when stretched adiabatically means that 
+$$
+\left( \frac{\partial T}{\partial L} \right)_{S,n} > 0
+$$
+or
+$$
+\left( \frac{\partial T}{\partial f} \right)_{S,n} > 0
+$$
+
+and we are interested in knowing about 
+$$
+\left( \frac{\partial L}{\partial T} \right)_{f,n}.
+$$
+
+
+
+\chapter{Phase Transitions}
+\section{\label{sec:level1} First Order Phase Transitions}
+\subsection{7.1}
+The latent heat of fusion of ice at a pressure of 1 atm and 0 \si{\degreeCelsius} is $3.348 \times10^{5}$ \si{\joule\per\kilogram}. The density of ice under these conditions is 917 \si{\kilo\gram\per\meter\cubed} and the density of water is 999.8 \si{\kilogram\per\meter\cubed}. If one kilomole of ice is melted,
+
+(a) During a phase change the temperature and pressure remain constant. The volume is the only thing that changes. Hence the work done is $P\Delta v$. \\
+\begin{equation}
+v_{1}=\frac{M}{\rho_{1}} = \frac{18 \, \si{\kilogram}}{917  \, \si{\kilogram\per\meter\cubed}}; \quad
+v_{2}=\frac{M}{\rho_{2}} = \frac{18 \, \si{\kilogram}}{999.8  \, \si{\kilogram\per\meter\cubed}} \\
+\end{equation}
+so that,\\
+\begin{align}
+W= P \Delta v = P(v_{2} - v_{1}) = -164 \, \si{\joule}.
+\end{align}
+
+(b) The change in internal energy can be calculated by the first law, $Q = \Delta U - W$ \\
+which can be written as, \\
+\begin{equation}
+\begin{split}
+\Delta U = Q - W = m_{2} \ell_{12} - W \\
+ = 18 \, \si{\kilogram} \times 3.344 \times 10^{5} \, \si{\joule\per\kilogram} + 164.2 \, \si{\joule} = 6.02 \times 10^{6} \, \si{\joule}.
+\end{split}
+\end{equation}
+
+(c) The change in entropy, \\
+\begin{equation}
+\Delta S = \frac{Q}{T} = \frac{m_{2} \ell _{12}}{T}\\
+= 2.21 \times 10^{4} \, \si{\joule\per\kilogram}.
+\end{equation}
+
+
+\subsection{\label{sec:level1}Universality}
+
+The equation of state is plotted in the P-V plane.
+The critical point is the point where (on the $T=T_c$ curve):
+$$
+\left( \frac{\partial p}{\partial V} \right)_{T} =0
+$$
+$$
+\left( \frac{\partial^2 p}{\partial V^2} \right)_{T} =0
+$$
+\subsection{\label{sec:level2} Van Der Waals}
+$$
+p = \frac{nrT}{V-bn} = \frac{an^2}{V^2}
+$$
+
+Taking the first and second derivatives with respect to volume on the critical temperature surface, we obtain the following equations:
+$$
+RT/(V-bn)^2 = 2an/V^3
+$$
+and
+$$
+RT/(V-bn)^3 = 3an/V^4
+$$
+
+From these, one can obtain $V_c=3bn$ and $RT_c=8a/27b$. Plugging these results on the equation of state give $p_c = a/27b^2$.
+
+Substituting $p = \mathcal{P} p_c$, $v = \mathcal{V} v_c$, and $T= \mathcal{T} T_c$, along with their corr]responding values.
+
+$$
+\left( \mathcal{P} + \frac{3}{\mathcal{V}^2}\right) \left( 3\mathcal{V} - 1 \right) = 8\mathcal{T}
+$$
+
+In this form the material constant a and b do not appear explicitly. Hence all van der Waals type gases may be considered equivalent when the values $\mathcal{P}, \mathcal{V},$ and $\mathcal{T}$ are the same. This is the law of corresponding states.
+
+Imagine you were and experimentalist. If you wanted to describe the behaviour of multiple gases this would be a very useful representation!
+
+In plotting the $\mathcal{T}$ curves on the new $\mathcal{P}$-$\mathcal{V}$ plane notice the following:
+
+For the regions of negative pressure, $\mathcal{V}<\frac{1}{3}$ and $\mathcal{P} < -3/\mathcal{V}^2$, need not be considered.
+
+For $\mathcal{V} \gg \frac{1}{3}$ and $\mathcal{V} \gg 9/8\mathcal{T}$, then the equation of state becomes $\mathcal{PV} \approx \frac{8}{3}\mathcal{T}$, the gas behaves like an ideal gas for large $\mathcal{V}$. Although, when $\mathcal{V}$  approaches $\frac{1}{3}$, $\mathcal{P}$ becomes infinite. 
+
+For a given value of $\mathcal{V}$ there is only one value of  $\mathcal{P}$,but for each value of $\mathcal{P}$ there are up to three values of $\mathcal{V}$.
+
+
+
+
+\subsection{\label{sec:level2} Dieterici}
+
+\subsection{7.2 Coexistence and Phenomenology}
+So an experimentalist at RPI measured the equation of state for a substance near the liquid-solid phase transition. She found that over a limited range of temperatures and densities, the liquid phase could be characterized by the following formula
+
+\begin{equation}
+A_{(l)}/V = \frac{1}{2}a(T) \rho^{2}_{(l)}
+\end{equation}
+
+Here $A$ is the Helmholtz free energy, $\rho = n/V$ is the molar density, and 
+$$ a(T) = \alpha/T   $$
+
+Where $\alpha$ is a constant. Similarly, for the solid phase she found that,
+\begin{equation}
+A_{(s)} / V = \frac{1}{3}b(T) \rho^{3}_{(s)}
+\end{equation}
+
+Here
+$$ b(t) = \beta/T $$ 
+with $\beta$ being another constant.
+
+At any given temperature, the pressure of the liquid can be adjusted to a particular pressure, $P_s$, at which point the liquid freezes.
+
+Again let's look at at the Clausius-Clapeyron equation and determine the slope $dP/dT$ at the liquid-solid coexistence line.
+
+First of all let's determine the molar densities as a function of temperature. We know that at the coexistence line:
+
+
+$$ \mu_{(s)} = \mu_{(l)} \, , \, P_{(s)}=P_{(l)} \, , \, $$ and $$\, T=T_{(s)}=T_{(l)} $$
+
+Taking the first constraint, we have
+$$
+\left( \frac{\partial A_{(s)}}{\partial n} \right)_{V,T} = \left( \frac{\partial A_{(l)}}{\partial n} \right)_{V,T} \rightarrow \frac{\alpha}{T}\left(\frac{n}{V}\right)_{(l)} = \frac{\beta}{T} \left( \frac{n}{V} \right)_{(s)}^{2}
+$$
+
+Taking the second constraint,
+$$
+- \left(  \frac{\partial A_{(l)}}{\partial V}\right)_{n,T} = - \left(  \frac{\partial A_{(s)}}{\partial V}\right)_{n,T}
+\rightarrow \frac{2}{3}\frac{\beta}{T} \left( \frac{n}{V} \right)_{(s)}^{3} = \frac{1}{2}\frac{\alpha}{T} \left( \frac{n}{V}  \right)_{(l)}^{2}
+$$
+
+Solving for $\rho_{(l)}$ we find that $\rho_{(l)} = \frac{\beta}{\alpha} \rho_{(s)}^{2}$. so 
+\begin{equation}
+\rho_{(s)} = \frac{4}{3}\frac{\alpha}{\beta}
+\end{equation}
+and
+\begin{equation}
+\rho_{(l)} = \frac{16}{9}\frac{\alpha}{\beta}
+\end{equation}
+
+Now that we have an expression for the molar densities in terms of the experimental parameters we will be able to calculate more meaningful quantities. For example,
+
+$$
+\Delta S_{l \rightarrow s} = \frac{s_{(s)} - s_{(l)}}{n} = \frac{1}{T^2}\left( \frac{\beta}{3} \rho_{(s)}^{2} - \frac{\alpha}{2} \rho_{(l)} \right) = -\frac{8}{27} \frac{\alpha ^2}{\beta T^2}
+$$
+
+Where we used the expressions for the molar densities previously obtained and the fact that,
+
+$$ s_i = -\left( \frac{\partial A_i}{\partial T} \right)_{n,V} $$
+
+Similarly, rearranging the definition for the molar density, $V_i = n/ \rho_i$,
+$$
+\Delta v_{l \rightarrow s} = \frac{3}{16}\frac{\beta}{\alpha}.
+$$
+
+Notice that until now we have been setting up the stage to obtain a Clausius-Clapeyron equation for our system. In order to proceed we now need to determine $P_s$.
+
+$$
+P_s = P_{(l)} = P_{(s)} = \frac{1}{2}\frac{\alpha}{T} \rho_{(l)}^{2} = \frac{128}{81}\frac{\alpha^3}{\beta^2 T}
+$$
+
+From this we are able to calculate $dP_s / dT$, and in turn are able to confirm the fact that 
+$$ \frac{dP_s}{dT} = \frac{\Delta S_{l \rightarrow s}}{\Delta v}. $$
+
+\chapter{Super Conductivity}
+
+\section{Ginzburg-Landau Theory}
+
+\subsection{3.1}
+According to the Ginzburg-Landau theory the conditional canonical potential associated with a magnetization pattern $M(r)$ is
+
+\begin{equation}
+\phi(M) = \phi_0 - \int_V d^3r \, \left( atM^2 + bM^4 + c|\nabla m|^2  \right).
+\end{equation}
+
+For temperatures not to close to the critical temperature, the observed magnetization pattern would be one that maximizes the value of $\phi(M)$. In a previous section we showed that the maximizing function, with any given boundary conditions, is a solution of a differential equation of the form (here written in terms of magnetization)
+\begin{equation}\label{CONDUCTORDE}
+-c \nabla ^2 M + atM + 2bM^3 = 0
+\end{equation}
+
+Here we will consider the case in which the temperature is below the critical temperature, that is, $t<0$. In this case the absolute minimum of $\phi(M)$ is given by the trivial solution of equation(\ref{CONDUCTORDE}) in which $M(r)=M_0$ is a constant. The value of $M_0$ is given by equation(\ref{CONDUCTORDE}) without the gradient term
+\begin{equation}\label{DESIMP}
+-a|t|M_0 + 2bM^{3}_{0} = 0
+\end{equation}
+or
+\begin{equation}
+M_0 = \pm \sqrt{\frac{a|t|}{2b}}
+\end{equation}
+
+It is easy to see that the other trivial solution to equation(\ref{DESIMP}), namely $M_0 = 0$, gives a local minimum, rather than a maximum.
+
+A more interesting solution of equation(\ref{CONDUCTORDE}) is the one that describes a two phase state. To describe such a state, one can take the function $M(x)$ that depends only on $\textbf{x}$ and has the form describing a domain wall.
+
+First of all how about we set out to determine an exact solution to equation(\ref{CONDUCTORDE}). Assume that $M(-x)= -M(x)$ and that $M(x) \rightarrow M_0$ as $x \rightarrow \infty 
+$.
+
+If $M$ as solely a dependence on $x$, then for $t<0$, equation(\ref{CONDUCTORDE}) becomes
+
+$$
+- c \frac{\partial ^2 M}{\partial x^2} - a |t| M + 2bM^3 = 0
+$$
+
+\chapter{Statistical Mechanics}
+
+\section{\label{sec:level2} Two State Systems}
+
+An ensemble is a collection of all the possible configurations of the system.
+In this chapter we will focus on two level systems. Thus we look at the question of what does the ensemble for multiple coins look like? For a system of spins? etc.
+
+This problem is tractable in the fact that we can enumerate the possible outcomes.
+
+Assume we have four coins. These coins are "classical" coins, watch one can be distinguished from the other three by putting a label on it.
+
+In this case we have five different macro-states. After being thrown all four coins could have landed heads, this is one macro-state, all but one could have landed heads, this is another macro-state, only two coins landed on heads, only one coin landed heads or no coin landed heads.
+
+Each one of these macro-statesis composed of multiple microstates. Microstates do not represent obserbable quantities such as the macrostates. These instead represent the underlying detail. For example, one can measure the average magnetization of a material, the given magnetization would correspond to the macroscopic state of the system. The underlyin atomic detail of the system, the orientations of the each of the spins.
+
+The number of posible microstates for any given macrostate can be calculated using the binomial coefficient ${N \choose n }$.
+
+SEE APPENDIX (include discussion on pascal's triangle, play with cards, etc.)
+
+So for example, if we want to calculate the number of microstates which have on avergae 400 spins pointing up out of 1000 atoms that would be equal to
+
+$$ {1000 \choose 400} = \frac{1000!}{400! \, 600!} $$
+
+From a more fundamental point of view, here the binomial coefficient corresponds to the degeneracy of the system, a sort of symmetry. How many ways can I arrange my systems so that I still have the same experimental result?
+
+Notice that the degeneracy is called by different symbols in different places, here are some common notations:
+
+$$
+{N \choose n} \hspace{5 mm} g_i \hspace{5 mm} \omega_i \hspace{5 mm} \Omega( \epsilon )
+$$
+
+For a spin up spin down non-interacting system the degeneracy is two.
+
+If we wanted to generalized the previous result to a multinomial, for example a cube. Then for each face we could get $n_1$, $n_2$, $n_3$, $n_4$, $n_5$, and $n_6$, altough because the system only needs five degrees of freedom to be completely determined we obtain
+
+$$
+{N \choose n_1 \, n_2 \,n_3 \, n_4 \, n_5 }= \frac{N!}{n_1! \, n_2! \,n_3! \, n_4! \, n_5! \, \left( N- n_1 -n_2 -n_3 -n_4 -n_5 \right)!}
+$$
+
+Going back to the spin system with four atoms. Recall the results we already obtained. Let's take the spin up to have an energy $+ \epsilon $ and the spin down atom to have an energy of zero. We are free to chose our ground state as we desired for most of the time we are only interested in measuring energy differences.
+
+Thus, we would have the following macrostates: \\~\\
+One stae with $E= 4 \epsilon$.\\
+Four states with $E = 3 \epsilon$. \\
+Six states with $E = 2 \epsilon$. \\
+Four states with $E = \epsilon $.\\
+One state with $E=0$.
+
+
+
+
+
+$$ U = \sum_i n_i \epsilon_i $$
+
+For a system at equilibrium the entropy will be maximized such that
+
+$$
+\frac{S(N,E)}{k_b} = \log N! - \log N_1 ! - \log (N-N_1)!
+$$$$
+= N \log N - N_1 \log N_1 - \left( N-N_1 \right) \log (N-N_1)
+$$
+
+Here we used Stirling's approximation along with the result from the previous section for the number of macrostates. 
+
+Notice that we can define $N_1 = E / \epsilon$. So the entropy can be expressed as
+
+$$
+\frac{S(N,E)}{k_b} = N \log N - \frac{NE}{N \epsilon} \log \frac{NE}{N \epsilon} - \left( N- \frac{NE}{N \epsilon} \right) \log \left( N- \frac{NE}{N \epsilon} \right)
+$$
+
+In order to simplify the result lets write the previous expression in terms of the relative occupation $x = E/ N \epsilon $. Hence,
+$$
+\frac{S(N,E)}{k_b} = N \left( \log N - \frac{E}{N \epsilon}  \log \left( \frac{NE}{N \epsilon} \right) - \left( 1 -  \frac{E}{N \epsilon} \right) \log \left( N \left( 1 - \frac{E}{N \epsilon} \right) \right) \right)
+$$$$
+= N \left( \log N - x \log \left( Nx \right)  - \left(  1 - x \right) \log \left(  N\left( 1 - x \right) \right) \right)
+$$
+
+So,
+$$
+\frac{S(N,E)}{k_b} = -N \left( x \log x + \left( 1-x \right) \log \left( 1-x \right) \right)
+$$
+ 
+
+\section{\label{sec:level2} Equations of State}
+
+\subsection{Ultra-relativistic Gas}
+
+Dispersion relation
+\begin{equation}
+\epsilon = pc.
+\end{equation}
+
+\begin{equation}
+Q_N = \frac{1}{N!}Q_{1}^{N}
+\end{equation}
+
+$$
+Q_1 = \frac{1}{h^3} \int d^3p \, d^3q \, e^{-\beta p c} = \frac{V}{h^3} \int 4 \pi p^2 \, dp \, e^{-\beta p c}
+$$
+
+Using the fact that, (see Appendix A)
+$$ \int dx \, x^n e^{-x} = n! $$
+
+$$
+Q_1 = \frac{8 \pi V}{\left( \beta h c \right)^3}
+$$
+
+and so
+\begin{equation}
+Q_N = \frac{1}{N!} \left( 8 \pi V \left( \frac{kT}{hc} \right)^3 \right)^N
+\end{equation}
+
+How does this compare to what we know from thermodynamics?
+For starters, given the fact that
+\begin{equation}
+A = - k_b t \log Q_N
+\end{equation}
+
+$$ P = - \left( \frac{\partial A}{\partial V} \right)_{N,T} 
+$$
+
+Also,
+
+$$
+U = kT^2 \left( \frac{\partial \log Q}{\partial T}\right)_{N,V}
+$$
+
+$$
+S = k \log Q + kT \left( \frac{\partial \log Q}{\partial T}\right)_{N,V}
+$$
+
+$$ c_v = \frac{\partial U}{\partial T}
+$$
+
+and 
+
+$$
+c_P = \frac{\partial \left( U + PV \right)}{\partial T}
+$$
+
+\chapter{Bose-Einstein}
+\section{\label{sec:level2} Black Body Radiation}
+
+It is a fact of everyday life that hot objects lose energy by the process of radiation. In this case we can regard radiation as a gas of photon. Because photons do not interact with each other but only mediate interactions where fermions are couple to the electromagnetic field, it is possible to approximate their density of states by taking into consideration a number of wave functions in a box.
+
+Solving the one dimensional box potential one arrives at the result that the wave number $k$ has the following restrictions,
+
+\begin{equation}
+k = \frac{2 \pi}{\lambda} = \frac{n \pi}{L}, \,  n=1,2,3,... .
+\end{equation}
+
+Which is equivalent to,
+
+\begin{equation}
+n = \frac{2 L}{\lambda}.
+\end{equation}
+
+Expanding this result to three dimensions,
+
+\begin{equation}
+n^2 = \left( n^{2}_{x} + n^{2}_{y} + n^{2}_{z} \right).
+\end{equation}
+
+The quantum numbers $n_{i}$ must be positive thus we restrict the possible solutions to the top right quadrant of a Cartesian plane, the zone where all $n_{i} > 0$, that is an eighth of the three dimensional plane. 
+
+Putting all together we are able to calculate the number density, 
+
+\begin{equation}
+g( \lambda ) d \lambda = \gamma \frac{1}{8} 4 \pi n^2 dn = \gamma \left( \frac{\pi}{2} \right) \left( \frac{2L}{\lambda} \right)^2 \left( \frac{2L}{\lambda ^2} d \lambda \right) 
+\end{equation}
+
+Here we used the fact that 
+\begin{equation}
+d | n | = \frac{2L}{\lambda ^2}  d| \lambda |
+\end{equation}
+
+In order to calculate the energy density we need a couple facts. First of all, the degeneracy constant $\gamma $ is equal to two due to the fact that photons have only two (transverse) modes of polarization. Furthermore we need to recall that photons have integer spins and thus follow Bose-Einstein statistics.
+
+Hence,
+
+\begin{equation}
+u(\lambda ) d \lambda = E_{\gamma} f(\lambda) g(\lambda) d \lambda
+\end{equation}
+
+Here $E_{\gamma}$ is the energy per photon and $f(\lambda)$ is the bose-einstein distribution of states. 
+
+Thus,
+$$
+u(\lambda ) d \lambda = \left( \frac{hc}{\lambda} \right) \left( \frac{1}{e^{hc/\lambda k_{b} T}-1} \right) \left[\pi \left( \frac{2^3 L^3}{\lambda ^4}\right) d \lambda \right] 
+$$
+$$
+= 8 \pi h c V \frac{d \lambda}{\lambda^5 (e^{hc/\lambda k_{b} T}-1)}
+$$
+
+The key to these sort of problems is that once we have an integral in terms of desired observables we define a dimensionless order parameter that will simplify the problem. 
+
+Looking at the argument in the distribution we define $x = hc/ \lambda k_b T$. Making this substitution,
+
+\begin{equation}
+\frac{U}{V} = \frac{8 \pi }{h^3 c^3}(k_b T)^4 \int^{\infty}_{0} \frac{x^3 \, dx}{e^x - 1} = \frac{8 \pi^5 k_b^4 }{15 h^3 c^3} T^4 = aT^4
+\end{equation}
+
+One can see that indeed the total radiation energy is proportional to the fourth power of the absolute temperature.
+
+Taking a second look at the energy density,
+
+\begin{equation} \label{rj}
+u(\lambda ) d \lambda = 8 \pi h c V \frac{d \lambda}{\lambda^5 (e^{hc/\lambda k_{b} T}-1)}
+\end{equation}
+
+It is important to notice that for long wavelengths, that is for, $hc/\lambda << k_b T$ we can approximate eq(\ref{rj}) with a two term expansion of the exponential term, the first term becomes negligible to the second and we arrive  obtain the Rayleigh-Jeans formula
+
+\begin{equation}
+u(\lambda ) d \lambda = V\frac{8 \pi k_b T}{\lambda^4} d\lambda
+\end{equation}
+
+This formula exhibits an ultraviolet catastrophe, for as the wavelength approaches zero the energy density approaches infinity.
+
+On the other hand, in the limit of short wavelengths,
+
+$$ e^{hc/\lambda k_b T} >> 1.$$
+
+So,
+\begin{equation}
+u(\lambda ) d \lambda = V\frac{8 \pi hc}{\lambda^5}e^{-hc/\lambda k_b T} d\lambda
+\end{equation}
+
+This last expression is the so called Wien's law.
+
+\subsection{\label{sec:level1} More Realistic Models}
+The flaw in the derivation of the Rayleigh-Jeans law is the classical assumption that the radiation modes vary continuously, which implies there is an average energy per node. Planck recognized this flaw and instead used the fact that energy is quantized in such a manner that the eigenvalues of energy have are described as follows,
+\begin{equation}
+E = n h \nu.
+\end{equation}
+
+Here $n$ is the quantum number describing how far a given quantum of energy is from the ground state.
+
+Using the formalism from statistical mechanics we are then able to calculate the average energy for a black body,
+
+\begin{equation} \label{planck}
+\bar{E} = \frac{ \sum_{n_s}^{\infty} E_{n_s} e^{\beta E_{n_s}} }{\sum_{n_s}^{\infty} e^{\beta E_{n_s}}} = \frac{\sum h \nu_i e^{\beta h \nu_i}}{\sum e^{\beta h \nu_i} }
+\end{equation}
+
+Here $\beta (= 1/k_b T)$ is the inverse temperature and the sums on eq(\ref{planck}) are over all quantum states.
+
+Furthermore, one can see that in the numerator of the previous expression the energy occurs twice. Simplifying this we obtain,
+
+$$\bar{E} = \frac{\frac{-\partial}{\partial (\beta)} \sum e^{\beta h \nu_i} }{\sum e^{\beta h \nu_i}} = -\frac{\partial}{\partial (\beta)} \log \left(\sum e^{\beta h \nu_i} \right). $$
+
+It is important to recognize that the term inside the logarithm is a geometric series and so,
+\begin{equation}
+\sum_{i}^{\infty} e^{\beta h \nu_i} = \frac{1}{1-e^{-\beta h \nu}}.
+\end{equation}
+
+Using this fact, we arrive at the final result,
+$$ \bar{E} = \frac{\partial}{\partial (\beta)} \log \left( 1 - e^{-\beta h \nu} \right) = \frac{h \nu e^{-\beta h \nu}}{1 - e^{-\beta h \nu}} = h\nu \frac{1}{e^{\beta h \nu} - 1} $$
+citing things 
+
+
+
+%\bibliographystyle{te}
+%\bibliography{references}
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+
+
+\end{document}

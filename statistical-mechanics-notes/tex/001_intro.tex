@@ -1,0 +1,128 @@
+\chapter{Motivation}
+We are going to start this whole thing by laying down the ideals and assumptions made for studying system at equilibrium.
+
+When studying these systems, the quantities of interest will be their probabilities or the probability distribution of certain quantities.
+From probability distributions we will then be able to predict measuarbale quantities.
+
+We will use our knowledge of the physical laws to try and predict the probability of a particle to be in state X.
+From here on we will be able to use or vast assortment of mathematical equations to calculate things such as the energy of the system, its heat capacity, magentization, etc. 
+
+We will start our trip by looking at the "harmonic oscillator" of statistical mechanics: the random walk.
+
+As mentioned above, we want to see how we can go from "we undersand the behaviour of this one 'microscopic' thing" to "this is the probability distribution for a lof of 'microscopic' things to do something" and finally to "using the probability distribution we are able to make this prediction about the macrospcopic state of our system".
+
+This process is very important to udnerstand as it is the only sensible way to study complex systems.
+And as such, let us begin!
+
+
+\section{Random Walks}
+
+\subsection{Ensembles}
+As we begin looking into probabilities it is very useful to introduce the idea of an enssemble.
+
+Let's say you want to calculate the probability of a coin landing in heads.
+What would you do?
+You would probably throw a coin a couple dozen times and count the number of times it landed heads and compare that to the total number of throws.
+
+A similar setup would be to configure multiple dozens of universes, all the same as yours, in which you throw the same coin and then count the number of universes in which the coin landed in heads and compare that to the total number of universes we looked at.
+In this latter example, we setup an ensemble to measure the probability of our coin landing in heads.
+
+This formulation, as trivial as it sounds, can be a lot more powerful when trying to make sense of our results.
+To make a quick example,have you checked the weather for today? What is the probability of rain?
+
+We will repeatedly use this idea of ensembles to setup our thought experiments and to formulate our formulas.
+So whenever you see us mention that the proability of somethin is blah, think to yourself that the way we are calculating said probability is by configuring many many replicas of the thing we are studying and seeing how each one evolves and then using our results to get the probability.
+
+\subsection{A Coin Toss}
+
+We now begin by loking at the simplest system possible.
+Imagine you have a particle in a 1D plane.
+Our particle can can only move left or right.
+
+Based on our knowledge of the physical laws governing this particle, we will try and generalize by imagining an ensemble of said particles.
+This will allow us to figure out probability distributions, e.g., how likely is it that my paticle ended X distance away from the start.
+
+One thing you will see in complex systems is that even very simple building blocks will give rise to interesting phenomena.
+So let's get going with our study.
+
+Again, our particle can only move left or move right.
+The distnce it can move in any of those directions is contant (its steps are always of the same length).
+We want to figure out first, what is the probability of landing a distance $x$ after $N$ steps and then see if we can generalize this expresion to obtain a probability distribution that we can use to calculate the probability of the particle being at any $x$ distance from the origin after any given value of $N$ steps.
+
+So first step, just to get a feeling for the problem, at any given time our particle can either take a step to the left or a step to the right.
+We could decide by tossing a coin and moving to the right if it lands heads and move to the left otherwise.
+
+With this procedure, what would be the probability of ending up 2 steps to the right of the origin after taking 8 steps?
+
+If we ended up 2 steps to the right after taking 8 steps, then it means we took 2 steps more to the right than to the left.
+This could have happened if we took a total of 5 steps to the right and 3 to the left.
+And this is our first problem: what is the probability of this happening?
+
+Well,let's go to the basics.
+We want to calculate
+
+$$
+P \left( \mbox{5 steps to the right out of 8 steps taken} \right)
+$$
+
+From the basic real of probability, the above quantity is the ratio of the number of ways in which it is possible to take 5 steps to the right when taking 8 steps and the total number of possible outcomes after 8 steps - the outcome being the distance from the origin after $N$ steps.
+
+\begin{equation}
+P \left( \frac{5}{8} \mbox{steps} \right) 
+= \frac{\mbox{\# of ways we can take 5 steps}}{\mbox{\# of possible outcomes}} \label{eq:coin-probability}
+\end{equation}
+
+Again, here the possible outcomes could have been our particle ending 8 steps to the left, 8 to the right, 7 to the left, 7 to the right, etc.
+
+\paragraph{Assumption} The above formulation of our problem makes the assumption that all possible outcomes are equally likely. We will build upon this assumption and explicitly call it out if we ever deviate from it.
+\\~\\
+
+At this point we have a counting problem.
+We need to calculate the number of possible outcomes after 8 steps and we need to caclculate how many different ways we could have taken 5 steps to the right in order to end 2 steps away from the origin.
+
+In order to calculate the possible number of outcomes let's think about it.
+Each time that our particle takes a step it can go to the left or to the right, there are 2 possibilitis at each step.
+
+In mathematics you will see the tool for solving this listed under the name \textbf{multiplication rule}
+
+\subparagraph{The multiplication rule}
+If something happens (i.e.,take a step to the right or to the left, flip a coin) and this something has $n_1$ possible outcomes, and each of these resulting outcomes has $n_2$ possible outcomes, and so on, such that at the $k$th iteration of our experiment we have $n_k$ possible outcomes then the total number of possible outcomes in
+
+$$
+n_1 \times n_2 \times ... \times n_k
+$$
+
+In our case, each time we take a step we have 2 possible outcomes (we take a step to the left or to the right).
+Using th emultiplication rules it means that we have
+
+$$
+2 \times 2 \times
+2 \times 2 \times
+2 \times 2 \times
+2 \times 2
+= 2^8 = 256
+$$
+
+possible outcomes.
+This is the value of the denominator in equation \eqref{eq:coin-probability}.
+
+Now we need to figure out the different number of ways we can take 5 steps to the right when we take a totalk of 8 steps.
+The order in which the steps are taken doesn't matter, it only matters the total number of steps.
+
+Let's think about it for a bit...
+We are taking $N$ steps.
+One step we take can be taken in any of $k$ possible times.
+If $k=1$ then we took it at the begining.
+If $k=2$ then we took the first step to the right in our second step - we took a step to the left then one to the right, etc.
+
+Using the multiplication rule, we see that we have 
+$$
+N \times 
+\left( N-1 \right) \times
+\left( N-2 \right) \times 
+\left( N-3 \right) \times
+\left( N-4 \right)
+$$
+
+
+TODO: add that one thing about how to calculate different moments of a distribution.\cite{reiff}
