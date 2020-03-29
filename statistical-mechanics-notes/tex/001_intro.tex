@@ -49,6 +49,8 @@ Again, our particle can only move left or move right.
 The distnce it can move in any of those directions is contant (its steps are always of the same length).
 We want to figure out first, what is the probability of landing a distance $x$ after $N$ steps and then see if we can generalize this expresion to obtain a probability distribution that we can use to calculate the probability of the particle being at any $x$ distance from the origin after any given value of $N$ steps.
 
+\subsubsection{Counting and Probabilities}
+
 So first step, just to get a feeling for the problem, at any given time our particle can either take a step to the left or a step to the right.
 We could decide by tossing a coin and moving to the right if it lands heads and move to the left otherwise.
 
@@ -109,20 +111,93 @@ This is the value of the denominator in equation \eqref{eq:coin-probability}.
 Now we need to figure out the different number of ways we can take 5 steps to the right when we take a totalk of 8 steps.
 The order in which the steps are taken doesn't matter, it only matters the total number of steps.
 
-Let's think about it for a bit...
+Let's think about it for a bit.
 We are taking $N$ steps.
-One step we take can be taken in any of $k$ possible times.
-If $k=1$ then we took it at the begining.
-If $k=2$ then we took the first step to the right in our second step - we took a step to the left then one to the right, etc.
+One step we take can be taken at any of the $N$ times we take a step.
+Another step could have been taken in the remaining $N-1$ steps (we have now taken 2 steps to the right).
+Another step could have been taken in the remaining $N-2$ steps (we have now taken 3 steps to the right), etc.
 
 Using the multiplication rule, we see that we have 
-$$
+\begin{align}
 N \times 
 \left( N-1 \right) \times
 \left( N-2 \right) \times 
 \left( N-3 \right) \times
-\left( N-4 \right)
-$$
+\left( N-4 \right) \label{eq:permutation} \\
+= 8 \times 7 \times 6 \times 5 \times 4 = 6720 \label{eq:permutation-result}
+\end{align}
 
+Is the total number of ways in which we could have taken our 5 steps to the right, if we take order into account.
+In our case, it doesn't matter what order we took our steps it only matters that we took them.
+To account for this fact, we need to divide the above number (the number of permutations of 5 steps to the right out of 8 total steps) by the number of ways in which we could have taken 5 steps.
+
+The number of ways in which 5 steps could have been taken can also be obtained from the multiplication rule by following a similar reasoning.
+If we forget about order, 1 steo could have been taken at 5 different times.
+Step 2 could have been taken at any of the remaining 4 times.
+Step 3 could have been taken at any of the remaining 3 times, and so on.
+Which means there are
+
+\begin{equation}
+5 \times 4 \times 3 \times 2 \times 1 = 120 \label{eq:overcounting}
+\end{equation}
+
+different ways in which the 5 steps could be ordered.
+
+Taking the ratio of \eqref{eq:permutation-result} and \eqref{eq:overcounting}, which is 56, as the numerator for \eqref{eq:coin-probability}
+
+\begin{align}
+P \left( \frac{5}{8} \mbox{steps} \right) 
+= \frac{\mbox{\# of ways we can take 5 steps}}{\mbox{\# of possible outcomes}} \\
+= \frac{56}{256} = 0.21875
+\end{align}
+
+However, the answer is not as important as what we can learn from it.
+Let's go back into our calculation.
+
+We discovered that the number of possible outcomes was
+\begin{equation}
+2^N
+\end{equation}
+
+If we go back through the reasoning for \eqref{eq:permutation} we can see that for the number of different ways in which we can take $k$ steps to the right in $N$ trials is
+
+\begin{equation}
+N \times 
+\left( N-1 \right) \times
+... \times
+\left( N- (k-1) \right) \label{eq:combination-pre1}
+\end{equation}
+
+when order matters, is the total number of permutations.
+And the factor by which the total number of permutations overcounts is, \eqref{eq:overcounting},
+\begin{equation}
+k! \label{eq:combination-pre2}
+\end{equation}
+
+Putting together \eqref{eq:combination-pre1} and \eqref{eq:combination-pre2} we can then calculate the number of combinations (different ways in which we can take $k$ steps in a given direction out of $N$ trials)
+\begin{equation}
+\frac{N \cdot (N-1) \cdot ... \cdot (N - (k-1))}{k!} \label{eq:combination-verbose}
+\end{equation}
+
+The numerator of \eqref{eq:combination-verbose} is almost $N!$.
+Let's do some manipulation to see if we can further simplify our formulat for calculating the number of combinations.
+
+\begin{equation}
+\frac{N!}{(N-k)!} = 
+N \cdot (N-1) \cdot ... \cdot (N - (k-1)) \label{eq:combination-simplification}
+\end{equation}
+
+We added the denominator of $(N-k)!$ as this essentially cancels out all the terms of the right-hand side after $(N-(k-1)) = (N-k+1)$.
+Using \eqref{eq:combination-simplification} in \eqref{eq:combination-verbose} we arrive at the number of combinations (the different number of ways we can take $k$ steps in a given direction if we take $N$ steps) to be
+
+\begin{equation}
+\frac{N!}{(N-k)! k!} 
+= \binom{N}{k}
+\end{equation}
+
+Which is the expression for binomial coefficients.
+
+Now that we have a general expression for calculating the probability of ending up at any given distance from the origin we can go ahead and move with the rest of our plan of study which is to study the probability distribution that arises from all of this and then figure out how we can use all these equations to calculate observable quantities - we already know how to calculate the probability of ending up some distance away from the origin so let's explore how much more information we can obtain from our system given what little we know about it (it moves left or right at contanstant lenght steps).
+\\~\\
 
 TODO: add that one thing about how to calculate different moments of a distribution.\cite{reiff}
