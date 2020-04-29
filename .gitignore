@@ -2,3 +2,7 @@
 *.swo
 
 *.out
+
+*.aux
+*.log
+*.gz
